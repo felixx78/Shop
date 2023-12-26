@@ -6,6 +6,10 @@ export default {
     fontFamily: {
       sans: ["Inter", "sans-serif"],
     },
+    container: {
+      center: true,
+      padding: "1rem",
+    },
     extend: {
       colors: {
         primary: "#9147ff",
