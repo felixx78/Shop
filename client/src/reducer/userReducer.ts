@@ -9,12 +9,12 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    auth(state, action: { payload: typeof initialState }) {
+    auth(state, action: { payload: User }) {
       const payload = action.payload;
 
-      state.user = payload.user;
+      state.user = payload;
 
-      localStorage.setItem("user", JSON.stringify(payload.user));
+      localStorage.setItem("user", JSON.stringify(payload || "{}"));
     },
     logout(state) {
       state.user = {} as User;
