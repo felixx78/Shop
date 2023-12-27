@@ -6,6 +6,8 @@ import mysql from "mysql2";
 
 const connection = mysql.createConnection(process.env.DATABASE_URL!);
 
+console.log("Connected to database");
+
 const app: Application = express();
 const port = 3000;
 
