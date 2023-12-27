@@ -1,10 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 import { useDispatch } from "react-redux";
 import { userActions } from "../reducer/userReducer";
+import AuthInput from "../components/AuthInput";
+import { useState } from "react";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [errors, setErrors] = useState({
+    email: { isError: false, errorMessage: "" },
+    password: { isError: false, errorMessage: "" },
+  });
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,6 +27,27 @@ function LoginPage() {
       .then((data) => {
         localStorage.setItem("accessToken", data.accessToken);
         dispatch(userActions.auth(data.payload));
+
+        navigate("/");
+      })
+      .catch((e) => {
+        if (e.response.data === "Incorrect Password") {
+          setErrors((prev) => ({
+            ...prev,
+            password: {
+              errorMessage: "Incorrect Password",
+              isError: true,
+            },
+          }));
+        } else if (e.response.data === "User does not exist") {
+          setErrors((prev) => ({
+            ...prev,
+            email: {
+              errorMessage: "User not found",
+              isError: true,
+            },
+          }));
+        }
       });
   };
 
@@ -30,22 +59,20 @@ function LoginPage() {
       >
         <h1 className="mb-2 text-center text-2xl font-bold">Login</h1>
 
-        <label htmlFor="login" className="mb-1 block">
-          Email
-        </label>
-        <input
+        <AuthInput
+          label="Email"
           name="email"
-          className="mb-4 w-full border-2 border-border p-2 outline-none hover:border-primary focus:border-primary dark:border-dark-border dark:text-copy"
           type="email"
+          isError={errors.email.isError}
+          errorMessage={errors.email.errorMessage}
         />
 
-        <label htmlFor="password" className="mb-1 block">
-          Password
-        </label>
-        <input
+        <AuthInput
+          label="Password"
           name="password"
-          className="mb-2 w-full border-2 border-border p-2 outline-none hover:border-primary focus:border-primary dark:border-dark-border dark:text-copy"
           type="password"
+          isError={errors.password.isError}
+          errorMessage={errors.password.errorMessage}
         />
         <Link
           to="/"
