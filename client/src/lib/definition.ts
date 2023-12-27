@@ -3,7 +3,6 @@ export type RootState = {
     theme: "dark" | "light";
   };
   user: {
-    acessToken: string;
     user: User;
   };
 };
