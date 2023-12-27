@@ -31,11 +31,11 @@ function LoginPage() {
         navigate("/");
       })
       .catch((e) => {
-        if (e.response.data === "Incorrect Password") {
+        if (e.response.data === "Incorrect password") {
           setErrors((prev) => ({
             ...prev,
             password: {
-              errorMessage: "Incorrect Password",
+              errorMessage: "Incorrect password",
               isError: true,
             },
           }));
