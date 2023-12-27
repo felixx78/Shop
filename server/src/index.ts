@@ -1,6 +1,10 @@
 import express, { Application } from "express";
 import cors from "cors";
 import apiRouter from "./routes";
+import "dotenv/config";
+import mysql from "mysql2";
+
+const connection = mysql.createConnection(process.env.DATABASE_URL!);
 
 const app: Application = express();
 const port = 3000;
