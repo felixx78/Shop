@@ -4,37 +4,3 @@ CREATE TABLE users (
   password varchar(255) NOT NULL,
   role varchar(255) DEFAULT 'user'
 );
-
-CREATE TABLE tshirts (
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title varchar(255) NOT NULL,
-  image varchar(255) NOT NULL,
-  sizes JSON NOT NULL,
-  price INT NOT NULL
-);
-
-CREATE TABLE manga_genres (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE manga (
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title varchar(255) NOT NULL,
-  image varchar(255) NOT NULL,
-  genre_id INT NOT NULL,
-  price INT NOT NULL
-);
-
-CREATE TABLE toys_series (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE toys (
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title varchar(255) NOT NULL,
-  image varchar(255) NOT NULL,
-  series_id INT NOT NULL,
-  price INT NOT NULL
-);
