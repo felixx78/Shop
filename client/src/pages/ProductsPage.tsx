@@ -26,16 +26,16 @@ function ProductsPage() {
   return (
     <div className="container pt-2">
       <h1 className="mb-4 text-2xl font-bold">Products</h1>
-      <div className="grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 items-start justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
         {products.map((product) => (
           <Link
             to={product.link}
             key={product.name}
-            className="block w-full bg-foreground dark:bg-dark-foreground"
+            className="block h-[300px] w-full bg-foreground lg:h-[400px] dark:bg-dark-foreground"
           >
             <img
               src={product.image}
-              className="max-h-[350px] w-full object-cover"
+              className="h-[260px] w-full object-cover lg:h-[360px]"
               alt=""
             />
             <h2 className="py-2 text-center text-lg">{product.name}</h2>
