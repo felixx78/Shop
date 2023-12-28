@@ -8,6 +8,7 @@ CREATE TABLE users (
 CREATE TABLE tshirts (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title varchar(255) NOT NULL,
+  image varchar(255) NOT NULL,
   sizes JSON NOT NULL,
   price INT NOT NULL
 );
@@ -20,6 +21,7 @@ CREATE TABLE manga_genres (
 CREATE TABLE manga (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title varchar(255) NOT NULL,
+  image varchar(255) NOT NULL,
   genre_id INT NOT NULL,
   price INT NOT NULL
 );
@@ -32,6 +34,7 @@ CREATE TABLE toys_series (
 CREATE TABLE toys (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title varchar(255) NOT NULL,
+  image varchar(255) NOT NULL,
   series_id INT NOT NULL,
   price INT NOT NULL
 );
