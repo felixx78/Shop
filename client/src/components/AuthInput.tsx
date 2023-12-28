@@ -37,6 +37,7 @@ function AuthInput({
         <button
           onClick={() => setShow(!show)}
           className="absolute right-3 top-1/2"
+          type="button"
         >
           {show ? (
             <EyeSlashIcon className="h-6 w-6 text-copy" />
