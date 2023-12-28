@@ -18,8 +18,28 @@ function LoginPage() {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const email = formData.get("email")?.toString().trim();
+    const password = formData.get("password")?.toString().trim();
+
+    if (!email) {
+      setErrors((prev) => ({
+        ...prev,
+        email: {
+          isError: true,
+          errorMessage: "Required",
+        },
+      }));
+    }
+    if (!password) {
+      setErrors((prev) => ({
+        ...prev,
+        password: {
+          isError: true,
+          errorMessage: "Required",
+        },
+      }));
+      return;
+    }
 
     axios
       .post("/api/auth/login", { email, password })
