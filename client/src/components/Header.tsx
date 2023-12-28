@@ -8,18 +8,26 @@ import { Link } from "react-router-dom";
 function Header() {
   const theme = useSelector((state: RootState) => state.theme.theme);
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user.user);
 
   return (
-    <header className="bg-primary text-dark-copy flex items-center justify-between px-12 py-2">
+    <header className="flex items-center justify-between bg-primary px-12 py-2 text-dark-copy">
       <Link to="/" className="font-bold">
         Anime Shop
       </Link>
-      <button
-        className="h-8 w-8"
-        onClick={() => dispatch(themeActions.toggleTheme())}
-      >
-        {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-      </button>
+      <div className="flex items-center gap-4">
+        {user?.email ? (
+          <Link to="/">My account</Link>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
+        <button
+          className="h-8 w-8"
+          onClick={() => dispatch(themeActions.toggleTheme())}
+        >
+          {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+        </button>
+      </div>
     </header>
   );
 }
