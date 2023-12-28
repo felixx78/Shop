@@ -1,41 +1,136 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../api/axios";
+import { userActions } from "../reducer/userReducer";
+import AuthInput from "../components/AuthInput";
 
 function SignupPage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [errors, setErrors] = useState({
+    email: { isError: false, errorMessage: "" },
+    password: { isError: false, errorMessage: "" },
+    confirm_password: { isError: false, errorMessage: "" },
+  });
+
+  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email")?.toString().trim();
+    const password = formData.get("password")?.toString().trim();
+    const confirm_password = formData
+      .get("confirm_password")
+      ?.toString()
+      .trim();
+
+    if (!email) {
+      setErrors((prev) => ({
+        ...prev,
+        email: {
+          isError: true,
+          errorMessage: "Required",
+        },
+      }));
+    }
+    if (!password) {
+      setErrors((prev) => ({
+        ...prev,
+        password: {
+          isError: true,
+          errorMessage: "Required",
+        },
+      }));
+    }
+    if (!confirm_password) {
+      setErrors((prev) => ({
+        ...prev,
+        confirm_password: {
+          isError: true,
+          errorMessage: "Required",
+        },
+      }));
+      return;
+    }
+
+    if (password !== confirm_password) {
+      setErrors((prev) => ({
+        ...prev,
+        confirm_password: {
+          isError: true,
+          errorMessage: "Passwords doesn't match",
+        },
+      }));
+      return;
+    }
+
+    axios
+      .post("/api/auth/signup", { email, password })
+      .then((res) => res.data)
+      .then((data) => {
+        localStorage.setItem("accessToken", data.accessToken);
+        dispatch(userActions.auth(data.payload));
+
+        navigate("/");
+      })
+      .catch((e) => {
+        if (e.response.data === "User already exist") {
+          setErrors((prev) => ({
+            ...prev,
+            email: {
+              errorMessage: "This email already taken",
+              isError: true,
+            },
+          }));
+        } else if (e.response.data === "User does not exist") {
+          setErrors((prev) => ({
+            ...prev,
+            email: {
+              errorMessage: "User not found",
+              isError: true,
+            },
+          }));
+        }
+      });
+  };
   return (
     <div className="flex flex-col justify-center px-2 pt-6 md:min-h-[70vh]">
-      <form className="bg-foreground dark:bg-dark-foreground mx-auto rounded-md px-6 py-8 sm:w-[400px]">
+      <form
+        onSubmit={handleOnSubmit}
+        className="mx-auto rounded-md bg-foreground px-6 py-8 sm:w-[400px] dark:bg-dark-foreground"
+      >
         <h1 className="mb-2 text-center text-2xl font-bold">Sign Up</h1>
 
-        <label htmlFor="login" className="mb-1 block">
-          Email
-        </label>
-        <input
+        <AuthInput
+          label="Email"
           name="email"
-          className="border-border dark:text-copy dark:border-dark-border focus:border-primary hover:border-primary mb-4 w-full border-2 p-2 outline-none"
           type="email"
+          isError={errors.email.isError}
+          errorMessage={errors.email.errorMessage}
         />
 
-        <label htmlFor="password" className="mb-1 block">
-          Password
-        </label>
-        <input
+        <AuthInput
+          label="Password"
           name="password"
-          className="border-border dark:text-copy dark:border-dark-border focus:border-primary hover:border-primary mb-4 w-full border-2 p-2 outline-none"
           type="password"
+          isError={errors.password.isError}
+          errorMessage={errors.password.errorMessage}
         />
 
-        <label htmlFor="password" className="mb-1 block">
-          Confirm Password
-        </label>
-        <input
-          name="password_confirm"
-          className="border-border dark:text-copy dark:border-dark-border focus:border-primary hover:border-primary mb-6 w-full border-2 p-2 outline-none"
+        <AuthInput
+          label="Confirm Password"
+          name="confirm_password"
           type="password"
+          isError={errors.confirm_password.isError}
+          errorMessage={errors.confirm_password.errorMessage}
+          mb="4"
         />
 
         <button
           type="submit"
-          className="bg-primary text-dark-copy hover:bg-primary-dark mb-4 block w-full py-2"
+          className="mb-4 block w-full bg-primary py-2 text-dark-copy hover:bg-primary-dark"
         >
           Sign up
         </button>
