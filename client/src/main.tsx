@@ -8,6 +8,7 @@ import themeReducer from "./reducer/themeReducer.ts";
 import { Provider } from "react-redux";
 import userReducer from "./reducer/userReducer.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const store = configureStore({
   reducer: {
