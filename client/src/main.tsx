@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import userReducer from "./reducer/userReducer.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "react-loading-skeleton/dist/skeleton.css";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const store = configureStore({
   reducer: {
@@ -24,7 +25,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <Provider store={store}>
         <QueryClientProvider client={client}>
-          <App />
+          <SkeletonTheme baseColor="#bdbdbd" highlightColor="#f0f0f0">
+            <App />
+          </SkeletonTheme>
         </QueryClientProvider>
       </Provider>
     </BrowserRouter>
