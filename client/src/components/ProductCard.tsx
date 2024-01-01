@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="mx-auto max-w-[300px] bg-foreground pt-4 dark:bg-dark-foreground">
+    <div className="mx-auto w-[290px] bg-foreground pt-4 dark:bg-dark-foreground">
       <Link to={`/product/${product.id}`} className="mb-4 block px-4">
         <img
           src={product.image}
