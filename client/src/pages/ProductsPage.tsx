@@ -88,7 +88,7 @@ const SelectCategory = ({
       {isOpen && (
         <div className="absolute top-full w-full divide-y-2 divide-border border-2 border-border bg-foreground dark:divide-dark-border dark:border-dark-border dark:bg-dark-foreground">
           <button
-            className="block w-full p-2 text-left"
+            className="block w-full cursor-pointer p-2 text-left"
             onClick={() => onChange("")}
           >
             all
