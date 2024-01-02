@@ -88,7 +88,7 @@ const SelectCategory = ({
       <div
         className={`${
           isOpen ? "top-full opacity-100" : "invisible top-0 opacity-0"
-        } absolute w-full divide-y-2 divide-border border-2 border-border bg-foreground transition-all duration-300 dark:divide-dark-border dark:border-dark-border dark:bg-dark-foreground`}
+        } absolute w-full divide-y-2 divide-border border-2 border-t-0 border-border bg-foreground transition-all duration-300 dark:divide-dark-border dark:border-dark-border dark:bg-dark-foreground`}
       >
         <button
           className="block w-full cursor-pointer p-2 text-left"
