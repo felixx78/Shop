@@ -85,24 +85,26 @@ const SelectCategory = ({
       >
         {value || "Select category"}
       </button>
-      {isOpen && (
-        <div className="absolute top-full w-full divide-y-2 divide-border border-2 border-border bg-foreground dark:divide-dark-border dark:border-dark-border dark:bg-dark-foreground">
+      <div
+        className={`${
+          isOpen ? "top-full opacity-100" : "invisible top-0 opacity-0"
+        } absolute w-full divide-y-2 divide-border border-2 border-border bg-foreground transition-all duration-300 dark:divide-dark-border dark:border-dark-border dark:bg-dark-foreground`}
+      >
+        <button
+          className="block w-full cursor-pointer p-2 text-left"
+          onClick={() => onChange("")}
+        >
+          all
+        </button>
+        {categories.map((category) => (
           <button
-            className="block w-full cursor-pointer p-2 text-left"
-            onClick={() => onChange("")}
+            onClick={() => onChange(category)}
+            className="block w-full p-2 text-left"
           >
-            all
+            {category}
           </button>
-          {categories.map((category) => (
-            <button
-              onClick={() => onChange(category)}
-              className="block w-full p-2 text-left"
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };
