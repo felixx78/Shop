@@ -20,8 +20,8 @@ function ProductsPage() {
 
   return (
     <div className="pt-2">
-      <div className="mb-4 flex flex-wrap justify-between px-8">
-        <h1 className="mb-4 text-2xl font-bold">Products</h1>
+      <div className="mb-4 flex flex-wrap justify-between gap-4 px-8">
+        <h1 className="text-2xl font-bold">Products</h1>
         <SelectCategory
           value={category}
           onChange={setCategory}
