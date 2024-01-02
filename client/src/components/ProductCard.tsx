@@ -32,7 +32,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
 export const ProductCardSkeleton = () => {
   return (
-    <div className="mx-auto w-[290px] bg-foreground pt-4 dark:bg-dark-foreground">
+    <div className="mx-auto mb-4 w-[290px] bg-foreground pt-4 dark:bg-dark-foreground">
       <div className="mb-4 px-4">
         {/* image */}
         <Skeleton height={350} className="mb-2 w-full" />
