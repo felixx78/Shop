@@ -2,15 +2,23 @@ import { Link } from "react-router-dom";
 import RatingStars from "./RatingStars";
 import { Product } from "../lib/definition";
 import Skeleton from "react-loading-skeleton";
+import { useState } from "react";
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
   return (
     <div className="mx-auto w-[290px] bg-foreground pt-4 dark:bg-dark-foreground">
       <Link to={`/product/${product.id}`} className="mb-4 block px-4">
+        {!isImageLoaded && <Skeleton height={350} className="mb-2 w-full" />}
+
         <img
           src={product.image}
-          className="mb-2 min-h-[150px] text-center"
+          className={`mb-2 text-center ${
+            isImageLoaded ? "visible" : "invisible absolute h-0 w-0"
+          }`}
           alt=""
+          onLoad={() => setIsImageLoaded(true)}
         />
 
         <p className="mb-2 truncate text-lg font-bold" title={product.title}>
