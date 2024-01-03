@@ -3,8 +3,12 @@ import RatingStars from "./RatingStars";
 import { Product } from "../lib/definition";
 import Skeleton from "react-loading-skeleton";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../reducer/cartReducer";
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const dispatch = useDispatch();
+
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
@@ -31,7 +35,10 @@ const ProductCard = ({ product }: { product: Product }) => {
         </div>
       </Link>
 
-      <button className="block w-full bg-primary py-2 text-lg text-dark-copy hover:bg-primary-dark">
+      <button
+        onClick={() => dispatch(cartActions.addItem(product.id))}
+        className="block w-full bg-primary py-2 text-lg text-dark-copy hover:bg-primary-dark"
+      >
         Add to cart
       </button>
     </div>
