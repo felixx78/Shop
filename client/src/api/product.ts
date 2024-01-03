@@ -23,3 +23,12 @@ export async function fetchProducts({ queryKey }: { queryKey: string[] }) {
 
   return data as Product[];
 }
+
+export async function fetchProductById({ queryKey }: { queryKey: any[] }) {
+  const [_, id] = queryKey;
+
+  const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const data = await response.json();
+
+  return data as Product;
+}
