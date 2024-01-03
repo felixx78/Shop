@@ -10,11 +10,13 @@ import userReducer from "./reducer/userReducer.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "react-loading-skeleton/dist/skeleton.css";
 import { SkeletonTheme } from "react-loading-skeleton";
+import cartReducer from "./reducer/cartReducer.ts";
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
     user: userReducer,
+    cart: cartReducer,
   },
 });
 

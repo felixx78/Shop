@@ -5,6 +5,9 @@ export type RootState = {
   user: {
     user: User;
   };
+  cart: {
+    items: CartItem[];
+  };
 };
 
 export type User = {
@@ -24,4 +27,9 @@ export type Product = {
     rate: number;
     count: number;
   };
+};
+
+export type CartItem = {
+  quantity: number;
+  productId: number;
 };
