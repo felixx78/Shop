@@ -9,7 +9,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       <Link to={`/product/${product.id}`} className="mb-4 block px-4">
         <img
           src={product.image}
-          className="mb-2 min-h-[200px] text-center"
+          className="mb-2 min-h-[150px] text-center"
           alt=""
         />
 
