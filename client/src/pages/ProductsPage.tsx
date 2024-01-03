@@ -100,6 +100,7 @@ const SelectCategory = ({
           <button
             onClick={() => onChange(category)}
             className="block w-full p-2 text-left"
+            key={category}
           >
             {category}
           </button>
