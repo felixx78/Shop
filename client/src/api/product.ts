@@ -1,4 +1,5 @@
-import { Product } from "../lib/definition";
+import { useSelector } from "react-redux";
+import { CartItem, Product, RootState } from "../lib/definition";
 
 export async function fetchAllCategories() {
   const response = await fetch("https://fakestoreapi.com/products/categories");
@@ -31,4 +32,17 @@ export async function fetchProductById({ queryKey }: { queryKey: any[] }) {
   const data = await response.json();
 
   return data as Product;
+}
+
+export async function fetchProductFromCart(cartItems: CartItem[]) {
+  const data: Product[] = [];
+
+  console.log(cartItems);
+
+  for (const item of cartItems) {
+    const product = await fetchProductById({ queryKey: ["", item.productId] });
+    data.push(product);
+  }
+
+  return data as Product[];
 }
