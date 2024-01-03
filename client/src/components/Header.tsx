@@ -16,7 +16,7 @@ const items = [
   {
     title: "Cart",
     icon: <ShoppingCartIcon />,
-    link: "/checkout",
+    link: "/cart",
   },
   {
     title: "Products",
@@ -99,7 +99,11 @@ function Header() {
 
       <div className="hidden items-center gap-4 text-sm sm:flex">
         {items.map((item) => (
-          <Link to={item.link} key={item.title} className="flex items-center gap-2">
+          <Link
+            to={item.link}
+            key={item.title}
+            className="flex items-center gap-2"
+          >
             {item.title}
             <div className="h-6 w-6">{item.icon}</div>
           </Link>
