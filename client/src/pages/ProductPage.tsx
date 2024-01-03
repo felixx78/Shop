@@ -1,0 +1,85 @@
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import { fetchProductById } from "../api/product";
+import RatingStars from "../components/RatingStars";
+import Skeleton from "react-loading-skeleton";
+import { useState } from "react";
+
+function ProductPage() {
+  const { id } = useParams();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["product", id],
+    queryFn: fetchProductById,
+  });
+
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto flex max-w-[1000px] flex-col items-center gap-8 pb-8 pt-6 sm:flex-row sm:items-start">
+        {/* image */}
+        <div className="h-[400px] w-[300px] max-w-[400px] px-2 sm:h-[450px] sm:w-1/2">
+          <Skeleton className="h-full w-full" />
+        </div>
+
+        <div className="w-full sm:w-1/2">
+          {/* title */}
+          <Skeleton width={200} height={30} className="mb-1" />
+          {/* category */}
+          <Skeleton width={150} height={20} className="mb-2" />
+          <div className="mb-2 flex gap-2">
+            {/* stars */}
+            <Skeleton width={150} height={20} />
+            {/* reviews */}
+            <Skeleton width={100} height={20} />
+          </div>
+          {/* desciption */}
+          <Skeleton count={4} height={15} className="w-full" />
+          <div className="mb-4"></div>
+          {/* button  */}
+          <Skeleton height={40} className="w-full" />
+        </div>
+      </div>
+    );
+  }
+
+  if (data) {
+    return (
+      <div className="container mx-auto flex max-w-[1000px] flex-col items-center gap-8 pb-8 pt-6 sm:flex-row sm:items-start">
+        {!isImageLoaded && (
+          <div className="h-[400px] w-[300px] max-w-[400px] px-2 sm:h-[450px] sm:w-1/2">
+            <Skeleton className="h-full w-full" />
+          </div>
+        )}
+        <img
+          src={data.image}
+          loading="lazy"
+          className={`max-h-[500px] min-h-[150px] w-[300px] max-w-[400px] px-2 sm:w-1/2 ${
+            isImageLoaded ? "visible" : "invisible absolute"
+          }`}
+          alt=""
+          onLoad={() => setIsImageLoaded(true)}
+        />
+        <div className="w-full sm:w-1/2">
+          <h1 className="mb-1 text-2xl font-bold">{data.title}</h1>
+          <p className="mb-2 text-copy-lighter dark:text-dark-copy-lighter">
+            {data.category}
+          </p>
+          <p className="mb-2 text-lg">{data.price}$</p>
+          <div className="mb-2 flex gap-2">
+            <RatingStars value={data.rating.rate} />
+            <p>{data.rating.count} reviews</p>
+          </div>
+          <p className="mb-6 text-copy-light dark:text-dark-copy-light">
+            {data.description}
+          </p>
+          <button className="block w-full bg-primary py-2 text-lg text-dark-copy hover:bg-primary-dark">
+            Add to cart
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
+export default ProductPage;
