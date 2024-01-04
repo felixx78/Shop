@@ -1,15 +1,27 @@
 import { Link } from "react-router-dom";
 import RatingStars from "./RatingStars";
-import { Product } from "../lib/definition";
+import { Product, RootState } from "../lib/definition";
 import Skeleton from "react-loading-skeleton";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../reducer/cartReducer";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
 
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isAdded, setIsAdded] = useState(
+    !!cartItems.find((i) => i.productId === product.id),
+  );
+
+  const addToCart = () => {
+    if (isAdded) return;
+
+    dispatch(cartActions.addItem(product.id));
+    setIsAdded(true);
+  };
 
   return (
     <div className="mx-auto w-[290px] bg-foreground pt-4 dark:bg-dark-foreground">
@@ -36,10 +48,21 @@ const ProductCard = ({ product }: { product: Product }) => {
       </Link>
 
       <button
-        onClick={() => dispatch(cartActions.addItem(product.id))}
-        className="block w-full bg-primary py-2 text-lg text-dark-copy hover:bg-primary-dark"
+        onClick={addToCart}
+        className={`flex w-full items-center justify-center gap-2 py-2 text-lg text-dark-copy ${
+          isAdded
+            ? "cursor-default bg-success"
+            : "bg-primary hover:bg-primary-dark"
+        }`}
       >
-        Add to cart
+        {isAdded ? (
+          <>
+            <span>Added</span>
+            <CheckIcon className="h-6 w-6" />
+          </>
+        ) : (
+          "Add to cart"
+        )}
       </button>
     </div>
   );
