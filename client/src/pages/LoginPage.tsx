@@ -84,6 +84,7 @@ function LoginPage() {
           name="email"
           type="email"
           isError={errors.email.isError}
+          required
           errorMessage={errors.email.errorMessage}
         />
 
@@ -92,6 +93,7 @@ function LoginPage() {
           name="password"
           type="password"
           isError={errors.password.isError}
+          required
           errorMessage={errors.password.errorMessage}
         />
         <Link
