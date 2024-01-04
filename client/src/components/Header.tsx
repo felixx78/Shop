@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { SunIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const items = [
   {
@@ -32,7 +32,7 @@ function Header() {
     return user?.email ? (
       <Link
         to="/"
-        onClick={() => setIsOpen(false)}
+        onClick={toggleMenu}
         className="flex items-center justify-center gap-4 py-2 text-xl sm:gap-2 sm:py-0 sm:text-sm"
       >
         My account <UserCircleIcon className="h-8 w-8" />
@@ -48,7 +48,7 @@ function Header() {
         className="flex w-full items-center justify-center gap-2 py-2 text-xl sm:w-min"
         onClick={() => {
           dispatch(themeActions.toggleTheme());
-          setIsOpen(false);
+          toggleMenu();
         }}
       >
         <span className="sm:hidden">{theme === "dark" ? "Dark" : "Light"}</span>
@@ -65,7 +65,7 @@ function Header() {
     return (
       <Link
         to="/cart"
-        onClick={() => setIsOpen(false)}
+        onClick={toggleMenu}
         className="relative flex items-center justify-center gap-4 py-2 text-xl sm:gap-2 sm:py-0 sm:text-sm"
       >
         <span className="sm:hidden">Cart</span>{" "}
@@ -79,14 +79,20 @@ function Header() {
     );
   };
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    document.getElementById("root")!.classList.toggle("lock");
+  };
+
+  useEffect(() => {
+    return document.getElementById("root")!.classList.remove("lock");
+  }, []);
+
   return (
     <header className="flex items-center justify-between bg-primary px-6 py-2 font-bold text-dark-copy sm:px-12">
       <Link to="/">Shop</Link>
 
-      <button
-        className="relative z-50 sm:hidden"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <button className="relative z-50 sm:hidden" onClick={toggleMenu}>
         <Bars3Icon className="h-8 w-8" />
       </button>
       {/* mobile */}
@@ -100,7 +106,7 @@ function Header() {
         {items.map((item) => (
           <Link
             to={item.link}
-            onClick={() => setIsOpen(false)}
+            onClick={toggleMenu}
             key={item.title}
             className="flex items-center justify-center gap-4 py-2 text-xl"
           >

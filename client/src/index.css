@@ -6,6 +6,11 @@
   transition: background 0.3s linear;
 }
 
+.lock {
+  max-height: 100vh;
+  overflow-y: hidden;
+}
+
 input[type="number"] {
   -moz-appearance: textfield;
 }
