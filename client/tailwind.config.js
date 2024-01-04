@@ -40,7 +40,7 @@ export default {
         "dark-copy-light": "#d7d1e0",
         "dark-copy-lighter": "#a294b8",
 
-        success: "#47ff47",
+        success: "#4CAF50",
         warning: "#ffff47",
         error: "#ff4747",
 
