@@ -6,6 +6,7 @@ function AuthInput({
   name,
   type,
   isError = false,
+  required = false,
   errorMessage = "",
   mb = "2",
 }: {
@@ -13,6 +14,7 @@ function AuthInput({
   name: string;
   type: string;
   isError?: boolean;
+  required?: boolean;
   errorMessage?: string;
   mb?: string;
 }) {
@@ -32,6 +34,7 @@ function AuthInput({
         name={name}
         className={`mb-2 w-full border-2 p-2 outline-none dark:text-copy ${borderStyle}`}
         type={type !== "password" ? type : show ? "text" : "password"}
+        required={required}
       />
       {type === "password" && (
         <button
