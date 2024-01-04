@@ -32,13 +32,15 @@ function Header() {
     return user?.email ? (
       <Link
         to="/"
-        onClick={toggleMenu}
+        onClick={closeMenu}
         className="flex items-center justify-center gap-4 py-2 text-xl sm:gap-2 sm:py-0 sm:text-sm"
       >
         My account <UserCircleIcon className="h-8 w-8" />
       </Link>
     ) : (
-      <Link to="/login">Login</Link>
+      <Link onClick={closeMenu} to="/login">
+        Login
+      </Link>
     );
   };
 
@@ -48,7 +50,7 @@ function Header() {
         className="flex w-full items-center justify-center gap-2 py-2 text-xl sm:w-min"
         onClick={() => {
           dispatch(themeActions.toggleTheme());
-          toggleMenu();
+          closeMenu();
         }}
       >
         <span className="sm:hidden">{theme === "dark" ? "Dark" : "Light"}</span>
@@ -65,7 +67,7 @@ function Header() {
     return (
       <Link
         to="/cart"
-        onClick={toggleMenu}
+        onClick={closeMenu}
         className="relative flex items-center justify-center gap-4 py-2 text-xl sm:gap-2 sm:py-0 sm:text-sm"
       >
         <span className="sm:hidden">Cart</span>{" "}
@@ -79,9 +81,14 @@ function Header() {
     );
   };
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-    document.getElementById("root")!.classList.toggle("lock");
+  const openMenu = () => {
+    setIsOpen(true);
+    document.getElementById("root")!.classList.add("lock");
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+    document.getElementById("root")!.classList.remove("lock");
   };
 
   useEffect(() => {
@@ -92,7 +99,7 @@ function Header() {
     <header className="flex items-center justify-between bg-primary px-6 py-2 font-bold text-dark-copy sm:px-12">
       <Link to="/">Shop</Link>
 
-      <button className="relative z-50 sm:hidden" onClick={toggleMenu}>
+      <button className="relative z-50 sm:hidden" onClick={openMenu}>
         <Bars3Icon className="h-8 w-8" />
       </button>
       {/* mobile */}
@@ -106,7 +113,7 @@ function Header() {
         {items.map((item) => (
           <Link
             to={item.link}
-            onClick={toggleMenu}
+            onClick={closeMenu}
             key={item.title}
             className="flex items-center justify-center gap-4 py-2 text-xl"
           >
