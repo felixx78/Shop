@@ -108,6 +108,7 @@ function SignupPage() {
           name="email"
           type="email"
           isError={errors.email.isError}
+          required
           errorMessage={errors.email.errorMessage}
         />
 
@@ -116,6 +117,7 @@ function SignupPage() {
           name="password"
           type="password"
           isError={errors.password.isError}
+          required
           errorMessage={errors.password.errorMessage}
         />
 
@@ -125,6 +127,7 @@ function SignupPage() {
           type="password"
           isError={errors.confirm_password.isError}
           errorMessage={errors.confirm_password.errorMessage}
+          required
           mb="4"
         />
 
