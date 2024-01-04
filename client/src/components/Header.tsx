@@ -31,7 +31,7 @@ function Header() {
   const MyAccount = () => {
     return user?.email ? (
       <Link
-        to="/"
+        to="/account"
         onClick={closeMenu}
         className="flex items-center justify-center gap-4 py-2 text-xl sm:gap-2 sm:py-0 sm:text-sm"
       >
