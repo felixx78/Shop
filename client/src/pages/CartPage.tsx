@@ -9,7 +9,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 function CartPage() {
   const items = useSelector((state: RootState) => state.cart.items);
 
-  const [data, setData] = useState<Product[]>([]);
+  const [data, setData] = useState<Product[]>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,10 +25,10 @@ function CartPage() {
   }, []);
 
   const deleteFromData = (index: number) => {
-    setData((prev) => prev.filter((_, i) => i !== index));
+    setData((prev) => prev!.filter((_, i) => i !== index));
   };
 
-  if (isLoading) {
+  if (isLoading || !data) {
     return (
       <div className="flex h-[80vh] items-center justify-center">
         <LoadingSpinner />
@@ -36,7 +36,7 @@ function CartPage() {
     );
   }
 
-  if (!data.length) {
+  if (data && data.length === 0) {
     return (
       <div className="pt-12 text-center text-2xl">Shopping cart is empty</div>
     );
