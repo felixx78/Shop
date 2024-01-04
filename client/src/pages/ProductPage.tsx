@@ -8,12 +8,16 @@ import { useState } from "react";
 function ProductPage() {
   const { id } = useParams();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["product", id],
     queryFn: fetchProductById,
   });
 
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  if (isError) {
+    return <div className="pt-12 text-center text-2xl">Product not found</div>;
+  }
 
   if (isLoading) {
     return (
