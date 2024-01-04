@@ -142,7 +142,10 @@ const CartProductItem = ({
       />
 
       <div className="flex w-1/2 flex-col gap-2 md:w-full md:gap-4">
-        <p className="max-w-[90%] truncate text-sm " title={product.title}>
+        <p
+          className="max-w-[90%] truncate text-sm sm:text-base"
+          title={product.title}
+        >
           {product.title}
         </p>
 
