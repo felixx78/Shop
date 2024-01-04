@@ -4,9 +4,16 @@ import { fetchProductById } from "../api/product";
 import RatingStars from "../components/RatingStars";
 import Skeleton from "react-loading-skeleton";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../lib/definition";
+import { CheckIcon } from "@heroicons/react/24/outline";
+import { cartActions } from "../reducer/cartReducer";
 
 function ProductPage() {
   const { id } = useParams();
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const dispatch = useDispatch();
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["product", id],
@@ -14,6 +21,16 @@ function ProductPage() {
   });
 
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isAdded, setIsAdded] = useState(
+    !!cartItems.find((i) => i.productId === Number(id)),
+  );
+
+  const addToCart = () => {
+    if (isAdded) return;
+
+    dispatch(cartActions.addItem(Number(id)));
+    setIsAdded(true);
+  };
 
   if (isError) {
     return <div className="pt-12 text-center text-2xl">Product not found</div>;
@@ -78,8 +95,22 @@ function ProductPage() {
           <p className="mb-6 text-copy-light dark:text-dark-copy-light">
             {data.description}
           </p>
-          <button className="block w-full bg-primary py-2 text-lg text-dark-copy hover:bg-primary-dark">
-            Add to cart
+          <button
+            onClick={addToCart}
+            className={`flex w-full items-center justify-center gap-2 py-2 text-lg text-dark-copy ${
+              isAdded
+                ? "cursor-default bg-success"
+                : "bg-primary hover:bg-primary-dark"
+            }`}
+          >
+            {isAdded ? (
+              <>
+                <span>Added</span>
+                <CheckIcon className="h-6 w-6" />
+              </>
+            ) : (
+              "Add to cart"
+            )}
           </button>
         </div>
       </div>
