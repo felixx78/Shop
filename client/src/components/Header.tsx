@@ -14,11 +14,6 @@ import { useState } from "react";
 
 const items = [
   {
-    title: "Cart",
-    icon: <ShoppingCartIcon />,
-    link: "/cart",
-  },
-  {
     title: "Products",
     icon: <ShoppingBagIcon />,
     link: "/products",
@@ -27,6 +22,7 @@ const items = [
 
 function Header() {
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
 
@@ -65,6 +61,24 @@ function Header() {
     );
   };
 
+  const Cart = () => {
+    return (
+      <Link
+        to="/cart"
+        onClick={() => setIsOpen(false)}
+        className="relative flex items-center justify-center gap-4 py-2 text-xl sm:gap-2 sm:py-0 sm:text-sm"
+      >
+        <span className="sm:hidden">Cart</span>{" "}
+        <ShoppingCartIcon className="h-8 w-8" />
+        {cartItems.length !== 0 && (
+          <div className="absolute -right-2 -top-2 hidden rounded-full bg-secondary px-1 text-sm text-dark-copy sm:block">
+            {cartItems.length}
+          </div>
+        )}
+      </Link>
+    );
+  };
+
   return (
     <header className="flex items-center justify-between bg-primary px-6 py-2 font-bold text-dark-copy sm:px-12">
       <Link to="/">Shop</Link>
@@ -81,6 +95,8 @@ function Header() {
           isOpen ? "top-0" : "invisible -top-full"
         } fixed left-0 z-40 block h-full w-full bg-secondary pt-16 transition-all duration-500 sm:hidden`}
       >
+        <Cart />
+
         {items.map((item) => (
           <Link
             to={item.link}
@@ -98,6 +114,8 @@ function Header() {
       </div>
 
       <div className="hidden items-center gap-4 text-sm sm:flex">
+        <Cart />
+
         {items.map((item) => (
           <Link
             to={item.link}
