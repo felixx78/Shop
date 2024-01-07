@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "react-loading-skeleton/dist/skeleton.css";
 import { SkeletonTheme } from "react-loading-skeleton";
 import cartReducer from "./reducer/cartReducer.ts";
+import "react-toastify/dist/ReactToastify.css";
 
 const store = configureStore({
   reducer: {
