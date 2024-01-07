@@ -13,7 +13,6 @@ const userRouter = Router().post(
       if (!newPassword) return res.status(400);
 
       const hashedNewPassword = await hashPassword(newPassword);
-      console.log(req.user);
 
       await query("UPDATE users SET password = ? WHERE id = ?", [
         hashedNewPassword,
