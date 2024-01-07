@@ -1,13 +1,9 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../types/user";
-
-interface CustomRequest extends Request {
-  user?: User;
-}
+import { User, UserRequest } from "../types/user";
 
 export const requireAdmin = (
-  req: CustomRequest,
+  req: UserRequest,
   res: Response,
   next: NextFunction
 ) => {
@@ -34,7 +30,7 @@ export const requireAdmin = (
 };
 
 export const requireAuth = (
-  req: CustomRequest,
+  req: UserRequest,
   res: Response,
   next: NextFunction
 ) => {
