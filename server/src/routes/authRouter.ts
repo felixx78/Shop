@@ -65,10 +65,10 @@ const authRouter = Router()
         });
       }
 
-      return res.status(500);
+      return res.status(500).end();
     } catch (e) {
       console.log(e);
-      return res.status(500);
+      return res.status(500).end();
     }
   })
   .post("/login", async (req: Request, res: Response) => {
@@ -114,10 +114,10 @@ const authRouter = Router()
         });
       }
 
-      return res.status(500);
+      return res.status(500).end();
     } catch (e) {
       console.log(e);
-      return res.status(500);
+      return res.status(500).end();
     }
   })
   .get("/refresh", (req: Request, res: Response) => {
@@ -143,7 +143,7 @@ const authRouter = Router()
       );
     } catch (e) {
       console.log(e);
-      return res.status(500);
+      return res.status(500).end();
     }
   });
 
