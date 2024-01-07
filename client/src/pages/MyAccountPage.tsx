@@ -96,7 +96,7 @@ function MyAccountPage() {
           />
           <button
             type="submit"
-            className="w-[300px] bg-primary py-2 font-bold hover:bg-primary-dark"
+            className="mx-auto w-full bg-primary py-2 font-bold hover:bg-primary-dark"
           >
             Submit
           </button>
