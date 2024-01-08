@@ -19,7 +19,7 @@ function ProductsPage() {
   });
 
   return (
-    <div className="pt-2">
+    <div className="pb-6 pt-2">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-4 px-8">
         <h1 className="text-2xl font-bold">Products</h1>
         <SelectCategory
