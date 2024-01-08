@@ -99,7 +99,10 @@ function Header() {
     <header className="flex items-center justify-between bg-primary px-6 py-2 font-bold text-dark-copy sm:px-12">
       <Link to="/">Shop</Link>
 
-      <button className="relative z-50 sm:hidden" onClick={openMenu}>
+      <button
+        className="relative z-50 sm:hidden"
+        onClick={isOpen ? closeMenu : openMenu}
+      >
         <Bars3Icon className="h-8 w-8" />
       </button>
       {/* mobile */}
