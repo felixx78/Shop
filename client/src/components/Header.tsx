@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { themeActions } from "../reducer/themeReducer";
 import { RootState } from "../lib/definition";
 import {
+  ArrowRightEndOnRectangleIcon,
   Bars3Icon,
   MoonIcon,
   ShoppingBagIcon,
@@ -38,8 +39,12 @@ function Header() {
         My account <UserCircleIcon className="h-8 w-8" />
       </Link>
     ) : (
-      <Link onClick={closeMenu} to="/login">
-        Login
+      <Link
+        onClick={closeMenu}
+        className="flex items-center justify-center gap-4 py-2 text-xl sm:gap-2 sm:py-0 sm:text-sm"
+        to="/login"
+      >
+        Login <ArrowRightEndOnRectangleIcon className="h-8 w-8 sm:h-6 sm:w-6" />
       </Link>
     );
   };
