@@ -11,11 +11,14 @@ const themeSlice = createSlice({
     toggleTheme(state) {
       const newTheme =
         localStorage.getItem("color-theme") === "dark" ? "light" : "dark";
+      const circle = document.getElementById("circle")!;
 
       if (newTheme === "dark") {
         document.documentElement.classList.add("dark");
+        circle.classList.remove("active");
       } else {
         document.documentElement.classList.remove("dark");
+        circle.classList.add("active");
       }
 
       localStorage.setItem("color-theme", newTheme);
