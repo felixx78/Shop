@@ -10,12 +10,9 @@ function Layout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-copy dark:text-dark-copy">
+    <div className="flex min-h-screen flex-col bg-background text-copy dark:text-dark-copy">
       <Header />
-      <main
-        style={{ minHeight: "calc(100vh - 65px)" }}
-        className="relative z-10 pb-4 pt-2"
-      >
+      <main className="relative z-10 flex-1 pt-2">
         <div id="circle" className="bg-circle bg-dark-background"></div>
         <Outlet />
       </main>
