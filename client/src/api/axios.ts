@@ -1,3 +1,4 @@
 import axios from "axios";
+import getApiBaseUrl from "../lib/getApiBaseUrl";
 
-export default axios.create({ baseURL: "http://localhost:3000" });
+export default axios.create({ baseURL: getApiBaseUrl() });

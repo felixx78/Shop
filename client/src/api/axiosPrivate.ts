@@ -1,7 +1,10 @@
 import axios from "axios";
+import getApiBaseUrl from "../lib/getApiBaseUrl";
+
+const baseUrl = getApiBaseUrl();
 
 const axiosPrivate = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: baseUrl,
   headers: {
     Authorization: localStorage.getItem("accessToken") || "",
   },
@@ -34,7 +37,7 @@ axiosPrivate.interceptors.response.use(
 );
 
 async function getNewAccessToken() {
-  const response = await axios.get("http://localhost:3000/api/auth/refresh");
+  const response = await axios.get(baseUrl + "/api/auth/refresh");
   return response.data;
 }
 
