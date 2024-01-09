@@ -27,6 +27,7 @@ function Home() {
   return (
     <div
       style={{
+        minHeight: "500px",
         maxHeight: "calc(100vh - 73px)",
         backgroundImage: 'url("./home-bg.svg")',
         backgroundRepeat: "no-repeat",
