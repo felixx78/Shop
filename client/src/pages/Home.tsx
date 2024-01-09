@@ -29,7 +29,7 @@ function Home() {
     <div
       style={{
         maxHeight: "calc(100vh - 73px)",
-        backgroundImage: `url('${bg}')`,
+        backgroundImage: 'url("./home-bg.svg")',
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
