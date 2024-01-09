@@ -69,7 +69,7 @@ function MyAccountPage() {
   };
 
   return (
-    <div className="px-4">
+    <div className="px-4 pb-8">
       <ToastContainer hideProgressBar autoClose={1500} />
       <div className="mx-auto max-w-[300px] pt-2">
         <h1 className="mb-2 text-2xl font-bold">My account</h1>
