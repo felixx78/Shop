@@ -1,4 +1,3 @@
-import bg from "../assets/home-bg.svg";
 import image from "../assets/shopping_bags.svg";
 
 const techologies = [
