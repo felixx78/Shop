@@ -5,6 +5,8 @@ function AuthInput({
   label,
   name,
   type,
+  value = "",
+  onChange,
   isError = false,
   required = false,
   errorMessage = "",
@@ -13,6 +15,8 @@ function AuthInput({
   label: string;
   name: string;
   type: string;
+  value?: string;
+  onChange?: (s: string) => void;
   isError?: boolean;
   required?: boolean;
   errorMessage?: string;
@@ -32,6 +36,8 @@ function AuthInput({
       </label>
       <input
         name={name}
+        value={value}
+        onChange={(e) => onChange && onChange(e.target.value)}
         className={`mb-2 w-full border-2 p-2 outline-none dark:text-copy ${borderStyle}`}
         type={type !== "password" ? type : show ? "text" : "password"}
         required={required}
