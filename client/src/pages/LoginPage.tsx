@@ -4,22 +4,24 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../reducer/userReducer";
 import AuthInput from "../components/AuthInput";
 import { useState } from "react";
+import SubmitButton from "../components/SubmitButton";
 
 function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
   const [errors, setErrors] = useState({
     email: { isError: false, errorMessage: "" },
     password: { isError: false, errorMessage: "" },
   });
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email")?.toString().trim();
-    const password = formData.get("password")?.toString().trim();
+  const handleOnSubmit = () => {
+    const email = data.email;
+    const password = data.password;
 
     if (!email) {
       setErrors((prev) => ({
@@ -73,16 +75,15 @@ function LoginPage() {
 
   return (
     <div className="flex min-h-[70vh] flex-col justify-center px-2 pt-6">
-      <form
-        onSubmit={handleOnSubmit}
-        className="mx-auto max-w-[400px] rounded-md bg-foreground px-4 py-8 dark:bg-dark-foreground"
-      >
+      <div className="mx-auto max-w-[400px] rounded-md bg-foreground px-4 py-8 dark:bg-dark-foreground">
         <h1 className="mb-2 text-center text-2xl font-bold">Login</h1>
 
         <AuthInput
           label="Email"
           name="email"
           type="email"
+          value={data.email}
+          onChange={(s) => setData((prev) => ({ ...prev, email: s }))}
           isError={errors.email.isError}
           required
           errorMessage={errors.email.errorMessage}
@@ -92,6 +93,8 @@ function LoginPage() {
           label="Password"
           name="password"
           type="password"
+          value={data.password}
+          onChange={(s) => setData((prev) => ({ ...prev, password: s }))}
           isError={errors.password.isError}
           required
           errorMessage={errors.password.errorMessage}
@@ -103,12 +106,7 @@ function LoginPage() {
           Forgot Password?
         </Link>
 
-        <button
-          type="submit"
-          className="mb-4 block w-full bg-primary py-2 text-dark-copy hover:bg-primary-dark"
-        >
-          Login
-        </button>
+        <SubmitButton onClick={handleOnSubmit} className="mb-4" />
 
         <div className="text-copy-light dark:text-dark-copy-light">
           Don't have an account?{" "}
@@ -116,7 +114,7 @@ function LoginPage() {
             Create a new account
           </Link>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
