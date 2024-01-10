@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AuthInput from "../components/AuthInput";
 import axiosPrivate from "../api/axiosPrivate";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import SubmitButton from "../components/SubmitButton";
 
 function MyAccountPage() {
@@ -73,7 +73,6 @@ function MyAccountPage() {
 
   return (
     <div className="px-4 pb-8">
-      <ToastContainer hideProgressBar autoClose={1500} />
       <div className="mx-auto max-w-[300px] pt-2">
         <h1 className="mb-2 text-2xl font-bold">My account</h1>
         <div className="mb-1">email: {user.email}</div>

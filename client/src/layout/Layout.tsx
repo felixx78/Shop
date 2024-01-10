@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import { useLayoutEffect } from "react";
 import AllowCookie from "../components/AllowCookie";
+import { ToastContainer } from "react-toastify";
 
 function Layout() {
   useLayoutEffect(() => {
@@ -13,6 +14,7 @@ function Layout() {
   return (
     <div className="relative flex min-h-screen flex-col bg-background text-copy dark:text-dark-copy">
       <AllowCookie />
+      <ToastContainer hideProgressBar autoClose={1500} />
       <Header />
       <main className="relative z-10 flex-1 pt-2">
         <div id="circle" className="bg-circle bg-dark-background"></div>
