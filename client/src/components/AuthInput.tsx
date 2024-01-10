@@ -30,10 +30,10 @@ function AuthInput({
 
   return (
     <div className={`mb-${mb} `}>
-      <label htmlFor={name} className="mb-1 block">
+      <p className="mb-1 block">
         {label}{" "}
         <span className="text-sm text-error">{isError && errorMessage}</span>
-      </label>
+      </p>
       <div className={`${type === "password" && "relative"} h-[44px]`}>
         <input
           name={name}
