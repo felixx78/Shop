@@ -6,12 +6,17 @@ import AuthInput from "../components/AuthInput";
 import axiosPrivate from "../api/axiosPrivate";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import SubmitButton from "../components/SubmitButton";
 
 function MyAccountPage() {
   const user = useSelector((state: RootState) => state.user.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [data, setData] = useState({
+    password: "",
+    confirm_password: "",
+  });
   const [errors, setErrors] = useState({
     password: { isError: false, errorMessage: "" },
     confirm_password: { isError: false, errorMessage: "" },
@@ -22,15 +27,9 @@ function MyAccountPage() {
     navigate("/login");
   };
 
-  const handleChangePassword = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const password = formData.get("password")?.toString().trim();
-    const confirm_password = formData
-      .get("confirm_password")
-      ?.toString()
-      .trim();
+  const handleChangePassword = () => {
+    const password = data.password.trim();
+    const confirm_password = data.confirm_password.trim();
 
     if (!password) {
       setErrors((prev) => ({
@@ -65,7 +64,7 @@ function MyAccountPage() {
       bodyStyle: { color: "#fbfafc" },
     });
 
-    e.currentTarget.reset();
+    setData({ password: "", confirm_password: "" });
   };
 
   return (
@@ -77,11 +76,13 @@ function MyAccountPage() {
         <div className="mb-4">role: {user.role}</div>
 
         <h2 className="mb-2 text-lg font-bold">Change password</h2>
-        <form onSubmit={handleChangePassword} className="mb-4">
+        <div className="mb-4">
           <AuthInput
             label="Password"
             name="password"
             type="password"
+            value={data.password}
+            onChange={(s) => setData((prev) => ({ ...prev, password: s }))}
             required
             isError={errors.password.isError}
             errorMessage={errors.confirm_password.errorMessage}
@@ -90,17 +91,17 @@ function MyAccountPage() {
             label="Confirm Password"
             name="confirm_password"
             type="password"
+            value={data.confirm_password}
+            onChange={(s) =>
+              setData((prev) => ({ ...prev, confirm_password: s }))
+            }
             required
             isError={errors.confirm_password.isError}
             errorMessage={errors.confirm_password.errorMessage}
           />
-          <button
-            type="submit"
-            className="mx-auto w-full bg-primary py-2 font-bold text-dark-copy hover:bg-primary-dark"
-          >
-            Submit
-          </button>
-        </form>
+
+          <SubmitButton onClick={handleChangePassword} />
+        </div>
 
         <button
           onClick={handleLogout}
