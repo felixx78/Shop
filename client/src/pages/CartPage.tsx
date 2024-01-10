@@ -131,7 +131,7 @@ const CartProductItem = ({
   };
 
   return (
-    <div className="relative flex items-center gap-8 border-b-2 border-border py-4 dark:border-dark-border">
+    <div className="relative flex items-center gap-8 border-t-2 border-border py-4 dark:border-dark-border">
       <button onClick={handleDelete} className="absolute right-0 top-2">
         <XMarkIcon className="h-6 w-6" />
       </button>
