@@ -101,7 +101,7 @@ function Header() {
   }, []);
 
   return (
-    <header className="relative z-10 flex h-[65px] items-center justify-between bg-primary px-6 py-2 font-bold text-dark-copy sm:px-12">
+    <header className="relative z-20 flex h-[65px] items-center justify-between bg-primary px-6 py-2 font-bold text-dark-copy sm:px-12">
       <Link to="/">Shop</Link>
 
       <button
