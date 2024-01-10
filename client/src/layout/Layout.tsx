@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { useLayoutEffect } from "react";
 import AllowCookie from "../components/AllowCookie";
 import { ToastContainer } from "react-toastify";
+import MobileMenu from "../components/MobileMenu";
 
 function Layout() {
   useLayoutEffect(() => {
@@ -16,10 +17,11 @@ function Layout() {
       <AllowCookie />
       <ToastContainer hideProgressBar autoClose={1500} />
       <Header />
-      <main className="relative z-10 flex-1 pt-2">
+      <main className="relative z-10 flex-1 pb-[50px] pt-[20px] sm:pb-8 sm:pt-2">
         <div id="circle" className="bg-circle bg-dark-background"></div>
         <Outlet />
       </main>
+      <MobileMenu />
     </div>
   );
 }
