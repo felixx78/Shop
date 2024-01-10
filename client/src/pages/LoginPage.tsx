@@ -20,8 +20,8 @@ function LoginPage() {
   });
 
   const handleOnSubmit = () => {
-    const email = data.email.toString().trim();
-    const password = data.password.toString().trim();
+    const email = data.email.trim();
+    const password = data.password.trim();
 
     if (!email) {
       setErrors((prev) => ({
