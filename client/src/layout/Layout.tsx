@@ -17,7 +17,7 @@ function Layout() {
       <AllowCookie />
       <ToastContainer hideProgressBar autoClose={1500} />
       <Header />
-      <main className="relative z-10 flex-1 pb-[50px] pt-[20px] sm:pb-8 sm:pt-2">
+      <main className="relative z-10 flex-1 pb-[50px] pt-[20px] sm:pb-0 sm:pt-2">
         <div id="circle" className="bg-circle bg-dark-background"></div>
         <Outlet />
       </main>
