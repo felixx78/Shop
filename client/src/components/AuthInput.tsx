@@ -10,7 +10,7 @@ function AuthInput({
   isError = false,
   required = false,
   errorMessage = "",
-  mb = "2",
+  mb = "4",
 }: {
   label: string;
   name: string;
