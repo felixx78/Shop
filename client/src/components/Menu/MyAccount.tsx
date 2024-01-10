@@ -1,11 +1,25 @@
 import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon as SolidUserCircleIcon } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { RootState } from "../../lib/definition";
 
 const MyAccount = () => {
   const user = useSelector((state: RootState) => state.user.user);
   const isAuth = !!user?.email;
+  const location = useLocation();
+
+  const Icon = ({ className }: { className: string }) => {
+    if (
+      location.pathname === "/account" ||
+      location.pathname === "/login" ||
+      location.pathname === "/signup"
+    ) {
+      return <SolidUserCircleIcon className={className} />;
+    }
+
+    return <UserCircleIcon className={className} />;
+  };
 
   return (
     <Link
@@ -16,7 +30,7 @@ const MyAccount = () => {
         {isAuth ? "My account" : "Login"}
       </span>
 
-      <UserCircleIcon className={`h-8 w-8 ${isAuth ? "" : "sm:hidden"}`} />
+      <Icon className={`h-8 w-8 ${isAuth ? "" : "sm:hidden"}`} />
     </Link>
   );
 };
