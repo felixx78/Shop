@@ -51,7 +51,7 @@ function CartPage() {
 
     return (
       <div className="grid grid-cols-12 gap-4 divide-y-2 divide-border pb-8 md:gap-0 md:divide-x-2 md:divide-y-0 dark:divide-dark-border">
-        <div className="col-span-12 pt-2 md:col-span-9">
+        <div className="col-span-12 pt-2 md:col-span-8 lg:col-span-9">
           <h1 className="mb-4 pl-6 text-2xl">Shopping cart</h1>
 
           <div className="px-4">
@@ -67,20 +67,20 @@ function CartPage() {
           </div>
         </div>
 
-        <div className="col-span-12 pt-4 md:col-span-3 md:pt-2">
-          <h2 className="mb-4 pl-4 text-xl">Cart Totals</h2>
+        <div className="col-span-12 px-2 pt-6 text-lg md:col-span-4 md:px-1 md:pt-2 md:text-base lg:col-span-3">
+          <h2 className="mb-4 pl-2 text-xl sm:pl-4">Cart Totals</h2>
 
-          <div className="flex justify-between border-y-2 border-border px-4 py-4 text-lg dark:border-dark-border">
+          <div className="flex justify-between border-y-2 border-border px-4 py-4 dark:border-dark-border">
             <p>Subtotal</p>
             <p>{subtotal.toFixed(2)}$</p>
           </div>
 
-          <div className="flex justify-between border-b-2 border-border px-4 py-4 text-lg dark:border-dark-border">
+          <div className="flex justify-between border-b-2 border-border px-4 py-4 dark:border-dark-border">
             <p>Shipping</p>
             <p>{shipping}$</p>
           </div>
 
-          <div className="mb-8 flex justify-between border-b-2 border-border px-4 py-4 text-lg dark:border-dark-border">
+          <div className="mb-8 flex justify-between border-b-2 border-border px-4 py-4 dark:border-dark-border">
             <p>Total</p>
             <p>{(subtotal + shipping).toFixed(2)}$</p>
           </div>
@@ -132,34 +132,39 @@ const CartProductItem = ({
 
   return (
     <div className="relative flex items-center gap-8 border-t-2 border-border py-4 dark:border-dark-border">
-      <button onClick={handleDelete} className="absolute right-0 top-2">
-        <XMarkIcon className="h-6 w-6" />
-      </button>
       <img
-        className="max-w-[50px] sm:max-h-[150px] sm:max-w-[100px]"
+        className="max-w-[80px] sm:max-h-[150px] sm:max-w-[100px]"
         src={product.image}
         alt=""
       />
 
-      <div className="flex w-1/2 flex-col gap-2 md:w-full md:gap-4">
-        <p
-          className="max-w-[90%] truncate text-sm sm:text-base"
-          title={product.title}
-        >
-          {product.title}
-        </p>
+      <div className="flex w-full flex-col gap-4 text-sm md:w-full md:gap-4">
+        <div className="flex w-full items-start justify-between gap-2 pr-2">
+          <p
+            className="line-clamp-1 text-base sm:text-lg"
+            title={product.title}
+          >
+            {product.title}
+          </p>
+          <button onClick={handleDelete} className="block">
+            <XMarkIcon className="h-6 w-6" />
+          </button>
+        </div>
 
-        <div className="">{product.price}$</div>
+        <div>Price: {product.price}$</div>
 
-        <input
-          type="number"
-          className="w-10 border-border text-center outline-none dark:border-dark-border dark:text-copy"
-          value={inputValue}
-          onChange={handleInputOnChange}
-          onKeyDown={handleInputOnKeyDown}
-        />
+        <div className="flex items-center gap-2">
+          <p>Quantity: </p>
+          <input
+            type="number"
+            className="w-10 border-border text-center outline-none dark:border-dark-border dark:text-copy"
+            value={inputValue}
+            onChange={handleInputOnChange}
+            onKeyDown={handleInputOnKeyDown}
+          />
+        </div>
 
-        <div className="">Total: ${product.price * Number(inputValue)}</div>
+        <div>Total: ${product.price * Number(inputValue)}</div>
       </div>
     </div>
   );
