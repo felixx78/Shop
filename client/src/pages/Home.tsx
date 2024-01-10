@@ -35,7 +35,7 @@ function Home() {
       }}
       className="relative h-screen w-full overflow-hidden"
     >
-      <div className="mx-auto flex max-w-[900px] items-center justify-between px-6 pt-12">
+      <div className="mx-auto flex max-w-[900px] items-center justify-between px-6 pt-6 sm:pt-12">
         <div className="">
           <h1 className="mb-4 text-4xl font-bold">Shop</h1>
           <p className="mb-2 text-lg">
