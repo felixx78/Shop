@@ -64,6 +64,10 @@ function MyAccountPage() {
       bodyStyle: { color: "#fbfafc" },
     });
 
+    setErrors({
+      password: { isError: false, errorMessage: "" },
+      confirm_password: { isError: false, errorMessage: "" },
+    });
     setData({ password: "", confirm_password: "" });
   };
 
