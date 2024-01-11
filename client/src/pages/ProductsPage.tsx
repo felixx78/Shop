@@ -79,7 +79,7 @@ const SelectCategory = ({
   return (
     <div className="relative">
       <button
-        className="w-[180px] border-2 border-border bg-foreground py-1 text-lg dark:border-dark-border dark:bg-transparent"
+        className="w-[165px] rounded-md border-2 border-border bg-foreground py-1 text-copy dark:border-dark-border dark:bg-transparent dark:text-border"
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -87,11 +87,11 @@ const SelectCategory = ({
       </button>
       <div
         className={`${
-          isOpen ? "top-full opacity-100" : "invisible top-0 opacity-0"
-        } absolute w-full divide-y-2 divide-border border-2 border-t-0 border-border bg-foreground transition-all duration-300 dark:divide-dark-border dark:border-dark-border dark:bg-dark-foreground`}
+          isOpen ? "top-[120%] opacity-100" : "invisible top-1/2 opacity-0"
+        } r absolute w-full rounded-md border-2 border-border bg-foreground transition-all duration-300 dark:border-dark-border dark:bg-dark-foreground dark:text-border`}
       >
         <button
-          className="block w-full cursor-pointer p-2 text-left"
+          className="block w-full cursor-pointer p-1.5 text-left hover:bg-border dark:hover:bg-dark-border"
           onClick={() => onChange("")}
         >
           all
@@ -99,7 +99,7 @@ const SelectCategory = ({
         {categories.map((category) => (
           <button
             onClick={() => onChange(category)}
-            className="block w-full p-2 text-left"
+            className="block w-full p-1.5 text-left hover:bg-border dark:hover:bg-dark-border"
             key={category}
           >
             {category}
