@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllCategories, fetchProducts } from "../api/product";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ProductCard, { ProductCardSkeleton } from "../components/ProductCard";
 import SelectCategory from "../components/ProductsPage/SelectCategory";
 
