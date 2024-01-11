@@ -31,7 +31,7 @@ const SelectCategory = ({
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {value || "Select category"}
+        {value || "select category"}
       </button>
       <div
         className={`${
