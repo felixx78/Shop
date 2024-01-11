@@ -19,7 +19,7 @@ const Cart = () => {
         <ShoppingCartIcon className="h-8 w-8" />
       )}
       {cartItems.length !== 0 && (
-        <div className="absolute -right-2 -top-2 rounded-full bg-dark-copy px-2 text-sm text-copy sm:bg-secondary sm:text-dark-copy">
+        <div className="absolute -right-2 -top-2 rounded-full bg-dark-copy px-2 text-sm font-normal text-copy">
           {cartItems.length}
         </div>
       )}
