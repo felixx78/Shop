@@ -22,7 +22,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           onLoad={() => setIsImageLoaded(true)}
         />
 
-        <div className="w-full bg-dark-foreground p-1 px-2">
+        <div className="w-full bg-foreground p-1 px-2 dark:bg-dark-foreground">
           <p className="">{product.price}$</p>
           <p className="truncate text-lg" title={product.title}>
             {product.title}
