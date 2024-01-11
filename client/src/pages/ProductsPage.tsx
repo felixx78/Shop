@@ -32,7 +32,7 @@ function ProductsPage() {
 
       <div className="mx-auto max-w-[1220px]">
         {isLoading || !products ? (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-5">
             {Array.from({ length: 8 }, (_, i) => i).map((i) => (
               <ProductCardSkeleton key={i} />
             ))}
