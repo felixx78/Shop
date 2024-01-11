@@ -7,7 +7,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <div className="mx-auto w-[290px] bg-white pt-4">
+    <div className="mx-auto w-[290px]">
       <Link to={`/product/${product.id}`} className="block">
         {!isImageLoaded && (
           <Skeleton height={280} className="w-full" borderRadius={0} />
@@ -15,7 +15,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
         <img
           src={product.image}
-          className={`mx-auto h-[280px] w-full object-contain p-8 text-center ${
+          className={`mx-auto h-[280px] w-full bg-white object-contain p-8 text-center ${
             isImageLoaded ? "visible" : "invisible absolute h-0 w-0"
           }`}
           alt=""
