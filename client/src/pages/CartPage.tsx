@@ -133,7 +133,7 @@ const CartProductItem = ({
   return (
     <div className="relative flex items-center gap-8 border-t-2 border-border py-4 dark:border-dark-border">
       <img
-        className="max-w-[80px] sm:max-h-[150px] sm:max-w-[100px]"
+        className="h-[80px] w-full max-w-[80px] bg-white object-contain p-2 sm:h-[100px] sm:max-w-[100px]"
         src={product.image}
         alt=""
       />
