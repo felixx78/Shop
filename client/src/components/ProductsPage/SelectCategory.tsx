@@ -36,7 +36,7 @@ const SelectCategory = ({
       <div
         className={`${
           isOpen ? "top-[120%] opacity-100" : "invisible top-1/2 opacity-0"
-        } r absolute w-full rounded-md border-2 border-border bg-foreground transition-all duration-300 dark:border-dark-border dark:bg-dark-foreground dark:text-border`}
+        } r absolute z-10 w-full rounded-md border-2 border-border bg-foreground transition-all duration-300 dark:border-dark-border dark:bg-dark-foreground dark:text-border`}
       >
         <button
           className="block w-full cursor-pointer p-1.5 text-left hover:bg-border dark:hover:bg-dark-border"
