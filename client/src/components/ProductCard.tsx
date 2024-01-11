@@ -39,7 +39,7 @@ export const ProductCardSkeleton = () => {
       {/* image */}
       <Skeleton height={280} className="w-full bg-white" borderRadius={0} />
 
-      <div className="w-full bg-dark-foreground p-1 px-2">
+      <div className="w-full bg-foreground p-1 px-2 dark:bg-dark-foreground">
         {/* price */}
         <Skeleton width={60} height={15} />
         {/* title */}
