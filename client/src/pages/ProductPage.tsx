@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchProductById } from "../api/product";
 import RatingStars from "../components/RatingStars";
 import Skeleton from "react-loading-skeleton";
@@ -14,6 +14,7 @@ function ProductPage() {
 
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["product", id],
@@ -26,7 +27,7 @@ function ProductPage() {
   );
 
   const addToCart = () => {
-    if (isAdded) return;
+    if (isAdded) return navigate("/cart");
 
     dispatch(cartActions.addItem(Number(id)));
     setIsAdded(true);
@@ -98,9 +99,7 @@ function ProductPage() {
           <button
             onClick={addToCart}
             className={`flex w-full items-center justify-center gap-2 py-2 text-lg text-dark-copy ${
-              isAdded
-                ? "cursor-default bg-success"
-                : "bg-primary hover:bg-primary-dark"
+              isAdded ? "bg-success" : "bg-primary hover:bg-primary-dark"
             }`}
           >
             {isAdded ? (
