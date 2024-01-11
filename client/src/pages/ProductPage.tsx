@@ -38,10 +38,10 @@ function ProductPage() {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto flex max-w-[1000px] flex-col items-center gap-8 pb-8 pt-6 sm:flex-row sm:items-start">
+      <div className="container mx-auto flex max-w-[1000px] flex-col items-center gap-8 pb-8 sm:flex-row sm:items-start sm:pt-6">
         {/* image */}
-        <div className="h-[400px] w-[300px] max-w-[400px] px-2 sm:h-[450px] sm:w-1/2">
-          <Skeleton className="h-full w-full" />
+        <div className="h-[300px] w-full max-w-[300px] sm:h-[400px] sm:max-w-[400px]">
+          <Skeleton className="h-full w-full" borderRadius={0} />
         </div>
 
         <div className="w-full sm:w-1/2">
@@ -67,16 +67,16 @@ function ProductPage() {
 
   if (data) {
     return (
-      <div className="container mx-auto flex max-w-[1000px] flex-col items-center gap-8 pb-8 pt-6 sm:flex-row sm:items-start">
+      <div className="container mx-auto flex max-w-[1000px] flex-col items-center gap-8 pb-8 sm:flex-row sm:items-start sm:pt-6">
         {!isImageLoaded && (
-          <div className="h-[400px] w-[300px] max-w-[400px] px-2 sm:h-[450px] sm:w-1/2">
-            <Skeleton className="h-full w-full" />
+          <div className="h-[300px] w-full max-w-[300px] sm:h-[400px] sm:max-w-[400px]">
+            <Skeleton className="h-full w-full" borderRadius={0} />
           </div>
         )}
         <img
           src={data.image}
           loading="lazy"
-          className={`max-h-[500px] min-h-[150px] w-[300px] max-w-[400px] px-2 sm:w-1/2 ${
+          className={`h-[300px] w-full max-w-[300px] bg-white object-contain p-6 sm:h-[400px] sm:max-w-[400px] ${
             isImageLoaded ? "visible" : "invisible absolute"
           }`}
           alt=""
