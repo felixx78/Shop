@@ -13,7 +13,7 @@ function Layout() {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-background text-copy dark:text-dark-copy">
+    <div className="relative flex min-h-screen max-w-[100vw] flex-col overflow-hidden bg-background text-copy dark:text-dark-copy">
       <AllowCookie />
       <ToastContainer hideProgressBar autoClose={1500} />
       <Header />
