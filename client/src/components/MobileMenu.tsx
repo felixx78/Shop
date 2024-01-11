@@ -8,7 +8,7 @@ import Cart from "./Menu/Cart";
 
 function MobileMenu() {
   return (
-    <div className="fixed bottom-0 z-10 flex h-[55px] w-full items-center justify-center gap-8 bg-secondary px-4 text-dark-copy sm:hidden">
+    <div className="fixed bottom-0 z-10 flex h-[55px] w-full items-center justify-center gap-8 bg-primary-dark px-4 text-dark-copy sm:hidden">
       <Home />
       <Cart />
       <Products />
