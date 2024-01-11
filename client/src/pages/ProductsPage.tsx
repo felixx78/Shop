@@ -13,7 +13,7 @@ function ProductsPage() {
   const [sortBy, setSortBy] = useState("");
 
   const { data, isLoading } = useQuery({
-    queryKey: ["products", category],
+    queryKey: ["products", category === "all" ? "" : category],
     queryFn: fetchProducts,
   });
 

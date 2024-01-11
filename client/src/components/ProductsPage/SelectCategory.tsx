@@ -40,7 +40,7 @@ const SelectCategory = ({
       >
         <button
           className="block w-full cursor-pointer p-1.5 text-left hover:bg-border dark:hover:bg-dark-border"
-          onClick={() => onChange("")}
+          onClick={() => onChange("all")}
         >
           all
         </button>
