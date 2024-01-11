@@ -101,7 +101,7 @@ function LoginPage() {
         />
         <Link
           to="/"
-          className="mb-4 inline-block text-primary-light dark:text-primary"
+          className="mb-4 hidden text-primary-light dark:text-primary"
         >
           Forgot Password?
         </Link>
