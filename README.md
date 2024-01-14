@@ -1,7 +1,7 @@
 
 # Shop
 
-This if fake shop. Made with [Fake Store Api](https://fakestoreapi.com/)
+This is fake shop. Made with [Fake Store Api](https://fakestoreapi.com/)
 
 ## Demo
 
