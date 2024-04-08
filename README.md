@@ -1,12 +1,6 @@
-
 # Shop
 
 This is fake shop. Made with [Fake Store Api](https://fakestoreapi.com/)
-
-## Demo
-
-[Shop](https://shop-kappa-flax.vercel.app)
-
 
 ## Tech Stack
 
@@ -55,9 +49,11 @@ Install dependencies and run server
 Create .env file
 
 Add
+
 ```bash
   DATABASE_URL=your_database_url(mysql)
 ```
+
 ```bash
   JWT_SECRET=secret_key
 ```
@@ -65,5 +61,5 @@ Add
 Run server
 
 ```bash
-  npm run dev 
+  npm run dev
 ```
