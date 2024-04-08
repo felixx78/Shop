@@ -2,6 +2,10 @@
 
 This is fake shop. Made with [Fake Store Api](https://fakestoreapi.com/)
 
+# Preview
+
+![alt text](https://github.com/v1st78/Show/blob/master/screen.png?raw=true)
+
 ## Tech Stack
 
 **Client:** React, Typescript, Tailwind, Redux, React Query
