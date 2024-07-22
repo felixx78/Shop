@@ -17,7 +17,7 @@ This is fake shop. Made with [Fake Store Api](https://fakestoreapi.com/)
 Clone the project
 
 ```bash
-  git clone https://github.com/finn78/Shop
+  git clone https://github.com/felixx78/Shop
 ```
 
 Go to the project directory
